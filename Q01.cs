@@ -75,3 +75,6 @@ namespace Question1_ModelPaper
     }
 }
 //4
+cmd.Parameters.AddWithValue("@date", SqlDbType.Date).Value = dateTimePicker1.Value;
+
+//5
