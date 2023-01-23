@@ -78,3 +78,55 @@ namespace Question1_ModelPaper
 cmd.Parameters.AddWithValue("@date", SqlDbType.Date).Value = dateTimePicker1.Value;
 
 //5
+ RegistrationForm fReg;
+        private void registrationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        if (fReg == null)
+         {
+                try
+                {
+                    fReg = new RegistrationForm();
+                    fReg.MdiParent = this;
+                    fReg.Show();
+                } catch (System.IndexOutOfRangeException)
+                {
+                    Console.WriteLine("Error");
+                }
+         }
+        else
+         {
+                fReg.Activate();
+         }
+        }
+
+//Q6
+
+ public void display_data()
+        {
+
+            connection.Open();
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from [EmployeeData]";
+            cmd.ExecuteNonQuery();
+            DataTable dta = new DataTable();
+            SqlDataAdapter dataadapter = new SqlDataAdapter(cmd);
+            dataadapter.Fill(dta);
+            dataGridView1.DataSource = dta;
+            connection.Close();
+        }
+
+//Q7
+ private void register_Click(object sender, EventArgs e)
+        {
+            connection.Open();
+            string datestring = dob.Value.ToShortDateString(); ;
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "insert into [EmployeeData] (eid, name, city, age, date) values ('" + id.Text + "','" + name.Text + "','" + hometown.Text + "','" + aget.Text + "' , @datestring )";
+            cmd.Parameters.AddWithValue("@datestring", datestring);
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            MessageBox.Show("Data inserted successfully", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
