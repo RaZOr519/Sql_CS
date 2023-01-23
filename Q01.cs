@@ -34,3 +34,44 @@ connection.Open();
         }
 
 //3
+namespace Question1_ModelPaper
+{
+    class Laptop
+    {
+        private String BrandName;
+        private float Price;
+        private String Processor;
+        private int RAM;
+        private String HardDrive;
+
+        public void UpdateDet(String bn, float price, String pro, int ram, String hdd)
+        {
+            this.BrandName = bn;
+            this.Price = price;
+            this.Processor = pro;
+            this.RAM = ram;
+            this.HardDrive = hdd;
+        }
+
+        public void PrintDetails()
+        {
+            Console.WriteLine("Brand Name : " + BrandName);
+            Console.WriteLine("Price : Rs " + Price);
+            Console.WriteLine("Processor : " + Processor);
+            Console.WriteLine("RAM : {0}GB ", RAM);
+            Console.WriteLine("HDD : " + HardDrive + "\n");
+        }
+    }
+    class Program { 
+        static void Main(string[] args)
+        {
+            Laptop l1 = new Laptop();
+            l1.UpdateDet("Lenovo", 60000, "i5", 2, "500GB");
+            l1.PrintDetails();
+            Console.ReadKey();
+        }
+
+
+    }
+}
+//4
